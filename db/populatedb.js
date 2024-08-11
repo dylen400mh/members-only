@@ -8,7 +8,8 @@ id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 firstName VARCHAR(255),
 lastName VARCHAR(255),
 username VARCHAR(255),
-password VARCHAR(255)
+password VARCHAR(255),
+membership VARCHAR(255)
 );
 
 CREATE TABLE IF NOT EXISTS messages (
@@ -48,8 +49,8 @@ async function seedData(client) {
     const hashedPassword = await bcrypt.hash(user.password, 10);
 
     const insertUserQuery = `
-      INSERT INTO users (firstName, lastName, username, password)
-      VALUES ($1, $2, $3, $4)
+      INSERT INTO users (firstName, lastName, username, password, membership)
+      VALUES ($1, $2, $3, $4, 'Guest')
       RETURNING id;
     `;
 
