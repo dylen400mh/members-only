@@ -10,11 +10,17 @@ const validateUser = [
     .trim()
     .isLength({ min: 1 })
     .withMessage("Last name required."),
+  body("username")
+    .trim()
+    .isLength({ min: 1 })
+    .withMessage("Username required."),
   body("password")
     .trim()
     .isLength({ min: 1 })
     .withMessage("Password required."),
-  body("confirm").custom((value, { req }) => value === req.body.password).withMessage('Passwords do not match.'),
+  body("confirm")
+    .custom((value, { req }) => value === req.body.password)
+    .withMessage("Passwords do not match."),
 ];
 
 exports.signUpGet = (req, res) => {

@@ -7,6 +7,18 @@ async function insertUser(firstName, lastName, username, password, membership) {
   );
 }
 
+async function getUserByUsername(username) {
+  return await pool.query("SELECT * FROM users WHERE username = $1", [
+    username,
+  ]);
+}
+
+async function getUserById(id) {
+  return await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+}
+
 module.exports = {
   insertUser,
+  getUserByUsername,
+  getUserById,
 };
