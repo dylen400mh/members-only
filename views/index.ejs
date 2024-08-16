@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <% if (user) { %> <% if (user.membership === 'Member') { %>
+    <h1>Welcome to the Membership page, <%= user.firstname %></h1>
+    <% } %> <% if (user.membership === 'Guest') { %>
+    <h1>Welcome, <%=user.firstname %></h1>
+    <a href="/join">JOIN THE CLUB</a>
+    <% } %>
+    <a href="/log-out">LOG OUT</a>
+    <% } %>
+  </body>
+</html>

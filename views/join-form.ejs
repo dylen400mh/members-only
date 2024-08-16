@@ -6,6 +6,8 @@
     <title>Document</title>
   </head>
   <body>
+    <h1>Join The Club</h1>
+    <%- include('partials/errors.ejs') %>
     <form action="/join" method="POST">
       <label for="passcode">Enter the secret passcode:</label>
       <input type="password" name="passcode" />
