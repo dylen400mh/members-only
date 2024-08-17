@@ -6,7 +6,18 @@
     <title>Document</title>
   </head>
   <body>
-    <% if (user) { %> <% if (user.membership === 'Member') { %>
+    <% if (user) { %> <% if (user.membership === 'Admin') { %>
+    <h1>Welcome to the Membership page, <%= user.firstname %></h1>
+    <a href="/create-message">Create Message</a>
+    <% messages.forEach(message => { %> <%console.log(message)%>
+    <h2><%=message.title %></h2>
+    <p><%=message.firstname + ' ' + message.lastname %></p>
+    <p><%=message.timestamp.toDateString() %></p>
+    <p><%=message.text %></p>
+    <form action="/delete-message/<%=message.id %>" method="POST">
+      <button type="submit">Delete</button>
+    </form>
+    <% }) %> <% } %> <% if (user.membership === 'Member') { %>
     <h1>Welcome to the Membership page, <%= user.firstname %></h1>
     <a href="/create-message">Create Message</a>
     <% messages.forEach(message => { %>
