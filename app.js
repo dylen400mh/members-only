@@ -9,6 +9,7 @@ const path = require("node:path");
 const logInRouter = require("./routes/logInRouter");
 const joinRouter = require("./routes/joinRouter");
 const createMessageRouter = require("./routes/createMessageRouter");
+const logOutRouter = require("./routes/logoutRouter");
 
 const app = express();
 app.set("views", path.join(__dirname, "views"));
@@ -22,6 +23,7 @@ app.use("/sign-up", signUpRouter);
 app.use("/log-in", logInRouter);
 app.use("/join", joinRouter);
 app.use("/create-message", createMessageRouter);
+app.use("/log-out", logOutRouter);
 
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
