@@ -2,7 +2,7 @@ const express = require("express");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
-const db = require("./db/pool");
+const db = require("./db/queries");
 const { body, validationResult } = require("express-validator");
 const signUpRouter = require("./routes/signUpRouter");
 const path = require("node:path");
@@ -29,8 +29,11 @@ function isAuthenticated(req, res, next) {
   }
   res.redirect("/log-in");
 }
-app.get("/", isAuthenticated, (req, res) =>
-  res.render("index", { user: req.user })
-);
+app.get("/", isAuthenticated, async (req, res) => {
+  // get all messages and join to users table
+  const { rows } = await db.getAllMessages();
+
+  res.render("index", { user: req.user, messages: rows });
+});
 
 app.listen(3000, () => console.log("app listening on port 3000"));

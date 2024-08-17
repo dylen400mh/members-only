@@ -39,10 +39,17 @@ async function createMessage(userid, title, text) {
   );
 }
 
+async function getAllMessages() {
+  return await pool.query(
+    "SELECT * FROM messages JOIN users ON users.id = userid ORDER BY messages.id DESC"
+  );
+}
+
 module.exports = {
   insertUser,
   getUserByUsername,
   getUserById,
   updateUser,
   createMessage,
+  getAllMessages,
 };

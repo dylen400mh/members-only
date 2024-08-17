@@ -9,10 +9,18 @@
     <% if (user) { %> <% if (user.membership === 'Member') { %>
     <h1>Welcome to the Membership page, <%= user.firstname %></h1>
     <a href="/create-message">Create Message</a>
-    <% } %> <% if (user.membership === 'Guest') { %>
+    <% messages.forEach(message => { %>
+    <h2><%=message.title %></h2>
+    <p><%=message.firstname + ' ' + message.lastname %></p>
+    <p><%=message.timestamp.toDateString() %></p>
+    <p><%=message.text %></p>
+    <% }) %> <% } %> <% if (user.membership === 'Guest') { %>
     <h1>Welcome, <%=user.firstname %></h1>
     <a href="/join">JOIN THE CLUB</a>
-    <% } %>
+    <% messages.forEach(message => { %>
+    <h2><%=message.title %></h2>
+    <p><%=message.text %></p>
+    <% }) %> <% } %>
     <a href="/log-out">LOG OUT</a>
     <% } %>
   </body>
