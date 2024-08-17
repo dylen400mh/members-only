@@ -8,6 +8,7 @@
   <body>
     <% if (user) { %> <% if (user.membership === 'Member') { %>
     <h1>Welcome to the Membership page, <%= user.firstname %></h1>
+    <a href="/create-message">Create Message</a>
     <% } %> <% if (user.membership === 'Guest') { %>
     <h1>Welcome, <%=user.firstname %></h1>
     <a href="/join">JOIN THE CLUB</a>

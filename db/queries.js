@@ -32,9 +32,17 @@ async function updateUser(
   );
 }
 
+async function createMessage(userid, title, text) {
+  await pool.query(
+    "INSERT INTO messages (userid, title, text) VALUES ($1, $2, $3)",
+    [userid, title, text]
+  );
+}
+
 module.exports = {
   insertUser,
   getUserByUsername,
   getUserById,
   updateUser,
+  createMessage,
 };
